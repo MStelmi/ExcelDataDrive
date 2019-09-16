@@ -1,25 +1,21 @@
 package UI.tests;
-
-import org.testng.annotations.AfterTest;
-import pages.Home;
-import pages.Results;
-
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.SelenideDriver;
-import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import pages.Home;
+import pages.Registry;
+import pages.Results;
 
-import static com.codeborne.selenide.Selenide.close;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class Base {
 
     String url = "http://boardgamegeek.com";
     final Integer time = 30;
+    Home home;
+    Results results;
+    Registry registry;
 
-    public pages.Home Home;
-    public pages.Results Results;
 
     public void setup(){
         Configuration.browser ="chrome";
@@ -31,6 +27,9 @@ public class Base {
     public void openSession(){
         setup();
         open(url);
+        home = page(Home.class);
+        results = page(Results.class);
+        registry = page(Registry.class);
     }
 
     @AfterEach

@@ -1,18 +1,20 @@
 package UI.tests;
-
 import org.junit.jupiter.api.Test;
+import org.testng.Assert;
+
 public class Search extends Base{
 
     private String searchedGame = "Angel";
 
     @Test
     public void searchGameBySearchField (){
-        Home.search(searchedGame);
-        Results.verifyGameExist(searchedGame);
+        home.search(searchedGame);
+        Assert.assertFalse(results.areAllRowsContainGameText(searchedGame));
     }
     @Test
     public void navigateToBoardGamesFromBrowseTabMenu (){
-        Home.selectFromTabPopupMenu("Browse", "All Boardgames");
-        Results.verifyResulTableExist();
+        home.selectTab("Browse");
+        home.SelectFromTabMenu("All Boardgames");
+        results.verifyResultTableExist();
     }
 }
