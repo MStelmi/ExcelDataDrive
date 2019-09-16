@@ -1,14 +1,22 @@
 package utility;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class ReadExcel extends Excel{
+public class ReadExcel{
+
+    Excel excel;
+    String fileName = "file.csv";
+
+    @BeforeEach
+    public void setup()
+    {
+        excel = new Excel (fileName);
+    }
 
     @Test
     public void testing (){
-      // excel.getColumnIndex("email");
-      //  int x = getColumnIndex("email");
-        System.out.println(getSpecificCellValue(1, "email"));
+        System.out.println(excel.getSpecificCellValue(1, "email"));
     }
 
 

@@ -2,20 +2,21 @@ package utility;
 
 import com.opencsv.CSVReader;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
 
 public class Excel {
 
-    private final String csvFilePath = "C:/Users/stelmam1/Documents/file.csv";
     CSVReader reader;
     List<String[]> records;
 
-    public Excel(){
+    public Excel(String fileName){
+
+        ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+        File file = new File(classLoader.getResource(fileName).getFile());
+
         try {
-            reader = new CSVReader(new FileReader(csvFilePath));
+            reader = new CSVReader(new FileReader(file));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -24,6 +25,7 @@ public class Excel {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     public int getColumnIndex(String columnName){
