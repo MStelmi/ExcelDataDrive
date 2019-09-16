@@ -2,28 +2,25 @@ package utility;
 
 import com.opencsv.CSVReader;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
-import java.nio.file.Paths;
 import java.util.List;
-
-import static java.nio.file.Files.newBufferedReader;
 
 public class Excel {
 
-    private static final String csvFilePath = "C:/Users/stelmam1/Documents/file.csv";
-    Reader reader;
+    private final String csvFilePath = "C:/Users/stelmam1/Documents/file.csv";
+    CSVReader reader;
     List<String[]> records;
-    CSVReader csvReader = new CSVReader(reader);
 
     public Excel(){
-                try {
-                    reader = newBufferedReader(Paths.get(csvFilePath));
-        } catch (IOException e) {
+        try {
+            reader = new CSVReader(new FileReader(csvFilePath));
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         try {
-            records = csvReader.readAll();
+            records = reader.readAll();
         } catch (IOException e) {
             e.printStackTrace();
         }
