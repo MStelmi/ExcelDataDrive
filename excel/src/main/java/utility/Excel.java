@@ -14,21 +14,16 @@ public class Excel {
     List<String[]> records;
 
     public Excel(String fileName) {
-
         ClassLoader classLoader = ClassLoader.getSystemClassLoader();
         File file = new File(classLoader.getResource(fileName).getFile());
-
         try {
             reader = new CSVReader(new FileReader(file));
+            records = reader.readAll();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }
-        try {
-            records = reader.readAll();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public int getColumnIndex(String columnName) {
