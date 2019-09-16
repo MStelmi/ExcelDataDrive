@@ -2,7 +2,10 @@ package utility;
 
 import com.opencsv.CSVReader;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 
 public class Excel {
@@ -10,7 +13,7 @@ public class Excel {
     CSVReader reader;
     List<String[]> records;
 
-    public Excel(String fileName){
+    public Excel(String fileName) {
 
         ClassLoader classLoader = ClassLoader.getSystemClassLoader();
         File file = new File(classLoader.getResource(fileName).getFile());
@@ -28,7 +31,7 @@ public class Excel {
 
     }
 
-    public int getColumnIndex(String columnName){
+    public int getColumnIndex(String columnName) {
         int columnIndex = -1;
         for (int i = 0; i < records.get(0).length; i++) {
             if (columnName.equals(records.get(0)[i])) {
@@ -39,7 +42,7 @@ public class Excel {
         return columnIndex;
     }
 
-    public String getSpecificCellValue(int row, String columnName){
+    public String getSpecificCellValue(int row, String columnName) {
         return records.get(row)[getColumnIndex(columnName)];
     }
 
