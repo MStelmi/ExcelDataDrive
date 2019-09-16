@@ -1,7 +1,8 @@
-package utility;
+package test;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import utility.Excel;
 
 public class ReadExcel{
 
@@ -11,7 +12,7 @@ public class ReadExcel{
     @BeforeEach
     public void setup()
     {
-        excel = new Excel (fileName);
+        excel = new Excel(fileName);
     }
 
     @Test
